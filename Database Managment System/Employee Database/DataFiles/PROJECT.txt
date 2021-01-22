@@ -1,0 +1,19 @@
+'EntityAnnot', 4, 'Houston', 5
+'Analysis', 5, 'Sacramento', 6 
+'EventManagement', 6, 'Sacramento', 6 
+'FoodDistribution', 7, 'Sacramento', 6 
+'Computerization', 10, 'Stafford', 4
+'ConfigMgmt', 11, 'Atlanta',6
+'DataMining', 13, 'Sacramento',6
+'Reorganization', 20, 'Houston', 1
+'Benefits', 30, 'Stafford', 4
+'OperatingSystem', 61, 'Sacramento', 6
+'DatabaseSystems', 62, 'Atlanta', 6
+'Middleware', 63, 'Atlanta', 6
+'Advertizing', 70, 'Arlington', 9
+'InkjetPrinters', 91, 'Milwaukee', 7
+'LaserPrinters', 92, 'Milwaukee', 7
+'HumanResource', 95, 'Arlington',9
+'SearchEngine', 22, 'Arlington', 6
+'MotherBoard', 29, 'Milwaukee', 7
+

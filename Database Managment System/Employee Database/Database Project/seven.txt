@@ -1,0 +1,13 @@
+mysql> INSERT INTO DEPT_LOCATIONS (Dnumber,Dlocation)
+    -> VALUES (12,'BANGLORE');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO PROJECT (PNAME, PNUMBER, PLOCATION, DNUM)
+    -> VALUES ('NITIAH',100,'BANGLORE',12);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO DEPARTMENT (Dname, Dnumber, Mgr_ssn, Mgr_start_date)
+    -> VALUES ('NITISH', 13, '001614905', '19-JUN-1971');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> notee

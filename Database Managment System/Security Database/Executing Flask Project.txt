@@ -1,0 +1,5 @@
+Executing Flask Project:
+
+Navigate to directory
+Run the command: pip install -r requirements.txt
+Command to execute: python app.py 

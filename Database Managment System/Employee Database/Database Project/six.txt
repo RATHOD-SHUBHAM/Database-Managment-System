@@ -1,0 +1,7 @@
+mysql> DELETE from DEPARTMENT where Dnumber = 3;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`company`.`employee`, CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`Dno`) REFERENCES `department` (`Dnumber`))
+mysql> DELETE from EMPLOYEE where Ssn = '001614905';
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`company`.`works_on`, CONSTRAINT `works_on_ibfk_1` FOREIGN KEY (`Essn`) REFERENCES `employee` (`Ssn`))
+mysql> DELETE from PROJECT where Pnumber = 4;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`company`.`works_on`, CONSTRAINT `works_on_ibfk_2` FOREIGN KEY (`Pno`) REFERENCES `project` (`Pnumber`))
+mysql> notee

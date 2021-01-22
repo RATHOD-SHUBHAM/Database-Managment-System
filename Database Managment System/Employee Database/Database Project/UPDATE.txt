@@ -1,0 +1,39 @@
+mysql> INSERT INTO DEPARTMENT (Dname, Dnumber, Mgr_ssn, Mgr_start_date)
+    -> VALUES ('Services',1,'123456789','11-AUG-2012');
+ERROR 1062 (23000): Duplicate entry '1' for key 'department.PRIMARY'
+mysql> INSERT INTO DEPARTMENT (Dname, Dnumber, Mgr_ssn, Mgr_start_date)
+    -> VALUES ('Purchasing',3,'990110110','02-FEB-2013');
+ERROR 1062 (23000): Duplicate entry '3' for key 'department.PRIMARY'
+mysql> INSERT INTO DEPARTMENT (Dname, Dnumber, Mgr_ssn, Mgr_start_date)
+    -> VALUES ('Customers', 12, '333445555', '14-JAN-2013');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> UPDATE DEPT_LOCATIONS
+    -> SET Dnumber = '9'
+    -> WHERE Dlocation = 'Seattle';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE
+    -> SET Salary = '55000'
+    -> WHERE Ssn = '444444444';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> INSERT INTO EMPLOYEE (Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Super_ssn, Dno)
+    -> VALUES ('Jane', 'B', 'Smith', '666666606', '1980-03-01', '3556 W Second Street,Miami,Fl', 'F', 85000, '666666603', 5);
+ERROR 1062 (23000): Duplicate entry '666666606' for key 'employee.PRIMARY'
+mysql> UPDATE WORKS_ON
+    -> SET Hours='25'
+    -> where Pno='1' AND Essn= 666884444;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> DELETE from EMPLOYEE where Ssn = 432765098;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`company`.`works_on`, CONSTRAINT `works_on_ibfk_1` FOREIGN KEY (`Essn`) REFERENCES `employee` (`Ssn`))
+mysql> DELETE from DEPARTMENT where Dnumber = 9;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`company`.`dept_locations`, CONSTRAINT `dept_locations_ibfk_1` FOREIGN KEY (`Dnumber`) REFERENCES `department` (`Dnumber`))
+mysql> DELETE from DEPENDENT where Essn = 666666608;
+Query OK, 3 rows affected (0.00 sec)
+
+mysql> notee

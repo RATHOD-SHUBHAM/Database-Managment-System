@@ -1,0 +1,10 @@
+mysql> INSERT INTO DEPT_LOCATIONS (Dnumber,Dlocation)
+    -> VALUES (13,'BANGLORE');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`company`.`dept_locations`, CONSTRAINT `dept_locations_ibfk_1` FOREIGN KEY (`Dnumber`) REFERENCES `department` (`Dnumber`))
+mysql> INSERT INTO EMPLOYEE (Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Super_ssn, Dno)
+    -> VALUES ('nitish', 'p', 'kota', '000000000', '17-OCT-1980', '626 Mary St,Dallas,TX', 'M', '50000', '0', 6);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`company`.`employee`, CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`Super_ssn`) REFERENCES `employee` (`Ssn`))
+mysql> INSERT INTO EMPLOYEE (Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Super_ssn, Dno)
+    -> VALUES ('nitish', 'p', 'kota', '000000000', '17-OCT-1980', '626 Mary St,Dallas,TX', 'M', '50000', '001614905', 13);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`company`.`employee`, CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`Dno`) REFERENCES `department` (`Dnumber`))
+mysql> notee

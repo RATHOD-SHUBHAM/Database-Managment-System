@@ -1,0 +1,84 @@
+CREATE DATABASE security;
+
+use security;
+
+
+create table USER_ACCOUNT(
+    IdNo CHAR(9) NOT NULL ,
+    Name VARCHAR(25) NOT NULL ,
+    Bdate VARCHAR(25) ,
+    Address VARCHAR(50) ,
+    Sex CHAR(2) ,
+    Phone VARCHAR(12),
+    Role_Id CHAR(9),
+    PRIMARY KEY (IdNo)
+);
+
+DROP TABLE USER_ACCOUNT;
+select * from USER_ACCOUNT;
+
+CREATE TABLE PRIVILEGES(
+    Privilege_Id CHAR(9) NOT NULL ,
+    Privileges_Type VARCHAR(20) NOT NULL ,
+    UNIQUE (Privileges_Type),
+    PRIMARY KEY (Privilege_Id)
+);
+
+CREATE TABLE ACCOUNT_PRIVILEGES(
+    Account_Id CHAR(9) NOT NULL ,
+    Account_Functionality_name VARCHAR(20) NOT NULL ,
+    Account_Functionality_desc VARCHAR(20) NOT NULL ,
+    Role_id CHAR(9),
+    Privilege_Id CHAR(9) NOT NULL ,
+    UNIQUE (Account_Functionality_name),
+    PRIMARY KEY (Privilege_Id,Account_Id),
+    FOREIGN KEY (Privilege_Id) REFERENCES PRIVILEGES (Privilege_Id)
+);
+
+CREATE TABLE RELATION_PRIVILEGES(
+    Relation_Id CHAR(9) NOT NULL ,
+    Relation_Functionality_name VARCHAR(20) NOT NULL ,
+    Relation_Functionality_desc VARCHAR(20) NOT NULL ,
+    Role_id CHAR(9),
+    Privilege_Id CHAR(9) NOT NULL ,
+    UNIQUE (Relation_Functionality_name),
+    PRIMARY KEY (Privilege_Id,Relation_Id),
+    FOREIGN KEY (Privilege_Id) REFERENCES PRIVILEGES (Privilege_Id)
+);
+
+Drop table ACCOUNT_PRIVILEGES;
+DROP table RELATION_PRIVILEGES;
+
+CREATE TABLE USER_ROLE(
+    Role_id CHAR(9) NOT NULL ,
+    Role_name VARCHAR(25) NOT NULL ,
+    Description VARCHAR(25) NOT NULL ,
+    PRIMARY KEY (Role_id),
+    UNIQUE (Role_name)
+);
+
+ALTER TABLE USER_ACCOUNT ADD FOREIGN KEY (Role_id) REFERENCES USER_ROLE (Role_id);
+ALTER TABLE ACCOUNT_PRIVILEGES ADD FOREIGN KEY (Role_id) REFERENCES USER_ROLE (Role_id);
+ALTER TABLE RELATION_PRIVILEGES ADD FOREIGN KEY (Role_id) REFERENCES USER_ROLE (Role_id);
+
+CREATE TABLE Tables(
+    Table_id CHAR(9) NOT NULL ,
+    Table_name VARCHAR(25) NOT NULL ,
+    Description VARCHAR(25) NOT NULL ,
+    IdNo CHAR(9) ,
+    UNIQUE (Table_name),
+    PRIMARY KEY (Table_id),
+    FOREIGN KEY (IdNo) REFERENCES USER_ACCOUNT (IdNo)
+);
+
+CREATE TABLE HAS_ON(
+    Table_id CHAR(9)  ,
+    Role_id CHAR(9) ,
+    Relation_Id CHAR(9) ,
+    Privilege_Id CHAR(9),
+    Description VARCHAR(25) NOT NULL ,
+    PRIMARY KEY (Table_id,Role_id,Relation_Id),
+    FOREIGN KEY (Table_id) REFERENCES Tables (Table_id),
+    FOREIGN KEY (Role_id) REFERENCES USER_ROLE (Role_id),
+    FOREIGN KEY (Privilege_Id,Relation_Id) REFERENCES RELATION_PRIVILEGES (Privilege_Id,Relation_Id)
+);
